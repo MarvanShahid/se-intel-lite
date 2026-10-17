@@ -1,0 +1,10 @@
+# Frozen evaluation repositories (Gap 1/2/3). The four smallest SWE-QA
+# repositories by number of tracked .py files (counted at the pinned commit).
+# Commits are the ones listed in SWE-QA-Bench/repo_commit.txt.
+benchmark_dir: data/swe_qa
+repos_dir: repos
+repos:
+  - {name: requests, url: https://github.com/psf/requests,       commit: 46e939b, py_files: 36}
+  - {name: flask,    url: https://github.com/pallets/flask,      commit: 85c5d93, py_files: 83}
+  - {name: xarray,   url: https://github.com/pydata/xarray,      commit: 40119bf, py_files: 233}
+  - {name: pytest,   url: https://github.com/pytest-dev/pytest,  commit: 5989efe, py_files: 260}

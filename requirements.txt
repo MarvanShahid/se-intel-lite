@@ -1,0 +1,8 @@
+networkx>=3.2
+rank-bm25>=0.2.2
+scikit-learn>=1.4
+radon>=6.0
+pyyaml>=6.0
+pytest>=8.0
+anthropic>=0.40      # optional: only needed for --llm anthropic
+openai>=1.40         # optional: only needed for --llm openai
