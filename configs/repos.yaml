@@ -1,7 +1,8 @@
 # Frozen evaluation repositories (Gap 1/2/3). The four smallest SWE-QA
 # repositories by number of tracked .py files (counted at the pinned commit).
 # Commits are the ones listed in SWE-QA-Bench/repo_commit.txt.
-benchmark_dir: data/swe_qa
+# SWE-QA-Bench pinned at c13deac7 (2026-08-10); 48 questions per repository, 192 in total.
+benchmark_dir: data/SWE-QA-Bench/Benchmark
 repos_dir: repos
 repos:
   - {name: requests, url: https://github.com/psf/requests,       commit: 46e939b, py_files: 36}
