@@ -1,8 +1,10 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+.venv/
+.env
+# large or re-creatable data (scripts/setup_data.sh recreates them)
 repos/
+data/SWE-QA-Bench/
 .cache/
 artifacts/
-.env
-.venv/

@@ -1,8 +1,11 @@
 networkx>=3.2
 rank-bm25>=0.2.2
 scikit-learn>=1.4
+scipy>=1.11
+numpy>=1.26
 radon>=6.0
 pyyaml>=6.0
 pytest>=8.0
-anthropic>=0.40      # optional: only needed for --llm anthropic
-openai>=1.40         # optional: only needed for --llm openai
+anthropic>=0.40      # agent, baselines and judge (Claude)
+pylint>=3.0          # optional: extra RunQuality output (--use-pylint)
+openai>=1.40         # optional: only for --llm openai:<model>
