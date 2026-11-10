@@ -51,6 +51,13 @@ class AgentAnswer:
     budget_exhausted: bool = False
     llm: str = ""
     trace: list[dict] = field(default_factory=list)
+    revisions: int = 0                # citation-verifier revisions requested (Gap 1)
+    cited: int = 0                    # ids the model cited in finish
+    ungrounded: int = 0               # cited ids that never appeared in an observation
+    cache_read: int = 0
+    cache_write: int = 0
+    qid: str = ""
+    run: int = 0
 
     def to_dict(self) -> dict:
         return asdict(self)
