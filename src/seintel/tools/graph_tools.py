@@ -27,9 +27,10 @@ def _brief(rg: RepoGraph, nid: str) -> str:
 
 
 class GraphTools:
-    def __init__(self, rg: RepoGraph, index: EntityIndex | None = None):
+    def __init__(self, rg: RepoGraph, index: EntityIndex | None = None, max_hops: int = 3):
         self.rg = rg
         self.index = index or EntityIndex(rg)
+        self.max_hops = max_hops          # ablation A2: 1 vs 3
 
     # ------------------------------------------------------------ SearchEntity
     @tool_spec("search_entity",
@@ -64,7 +65,7 @@ class GraphTools:
         start = [s for s in start if self.rg.has(s)]
         if not start:
             return err("none of the start entities exist; use search_entity first")
-        hops = max(1, min(int(hops), 3))
+        hops = max(1, min(int(hops), self.max_hops))
         etypes = set(edge_types or ["invokes", "inherits", "imports"])
         dirs = ["out", "in"] if direction == "both" else [direction if direction in ("out", "in") else "out"]
         keep = set(entity_types) if entity_types else None
