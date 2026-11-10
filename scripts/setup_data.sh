@@ -1,19 +1,23 @@
 #!/usr/bin/env sh
-# Clone the frozen evaluation repositories at their pinned commits into ./repos
-# Usage: scripts/setup_data.sh [repo ...]     (default: all four)
-# Full history is kept on purpose: Phase 3/4 mine bug-fix commits with PyDriller.
+# Clone the frozen evaluation repositories at their pinned commits into ./repos and the SWE-QA benchmark into
+# ./data/SWE-QA-Bench (pinned commit). Usage: scripts/setup_data.sh [repo ...]   (default: all four)
+# Full history is kept on purpose: Gap 2/3 mine bug-fix commits from it.
 set -e
 cd "$(dirname "$0")/.."
-mkdir -p repos
-python3 - "$@" <<'PY'
-import subprocess, sys, yaml
+PY=${PYTHON:-python}
+mkdir -p repos data
+if [ ! -d data/SWE-QA-Bench ]; then
+  git clone -q https://github.com/peng-weihan/SWE-QA-Bench data/SWE-QA-Bench
+fi
+git -C data/SWE-QA-Bench checkout -q c13deac7a0d99b0ca2e593e004c4739475785b08
+$PY - "$@" <<'PY'
+import os, subprocess, sys, yaml
 cfg = yaml.safe_load(open("configs/repos.yaml"))
 want = set(sys.argv[1:])
 for r in cfg["repos"]:
     if want and r["name"] not in want:
         continue
     d = f"repos/{r['name']}"
-    import os
     if not os.path.isdir(d):
         print(f"cloning {r['name']} ..."); subprocess.run(["git", "clone", "-q", r["url"], d], check=True)
     subprocess.run(["git", "-C", d, "checkout", "-q", r["commit"]], check=True)
