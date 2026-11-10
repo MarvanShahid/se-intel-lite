@@ -1,0 +1,102 @@
+{
+  "requests": {
+    "nodes": {
+      "directory": 7,
+      "file": 36,
+      "class": 86,
+      "function": 669
+    },
+    "edges": {
+      "contains": 797,
+      "imports": 88,
+      "invokes": 827,
+      "inherits": 35
+    },
+    "builder": {
+      "files": 36,
+      "classes": 86,
+      "functions": 669,
+      "import_edges": 88,
+      "inherit_edges": 35,
+      "unresolved_calls": 1689,
+      "invoke_edges": 827,
+      "heuristic_invoke_edges": 146
+    },
+    "heuristic_invoke_share": 0.177
+  },
+  "flask": {
+    "nodes": {
+      "directory": 28,
+      "file": 83,
+      "function": 1397,
+      "class": 144
+    },
+    "edges": {
+      "contains": 1681,
+      "imports": 207,
+      "invokes": 1569,
+      "inherits": 41
+    },
+    "builder": {
+      "files": 83,
+      "functions": 1416,
+      "classes": 155,
+      "import_edges": 207,
+      "inherit_edges": 41,
+      "unresolved_calls": 2630,
+      "invoke_edges": 1569,
+      "heuristic_invoke_edges": 881
+    },
+    "heuristic_invoke_share": 0.562
+  },
+  "xarray": {
+    "nodes": {
+      "directory": 27,
+      "file": 233,
+      "function": 7847,
+      "class": 655
+    },
+    "edges": {
+      "contains": 9147,
+      "imports": 1438,
+      "invokes": 14654,
+      "inherits": 298
+    },
+    "builder": {
+      "files": 233,
+      "functions": 8233,
+      "classes": 655,
+      "import_edges": 1438,
+      "inherit_edges": 298,
+      "unresolved_calls": 31843,
+      "invoke_edges": 14654,
+      "heuristic_invoke_edges": 2330
+    },
+    "heuristic_invoke_share": 0.159
+  },
+  "pytest": {
+    "nodes": {
+      "directory": 68,
+      "file": 260,
+      "function": 5654,
+      "class": 714
+    },
+    "edges": {
+      "contains": 6763,
+      "imports": 864,
+      "invokes": 7701,
+      "inherits": 97
+    },
+    "builder": {
+      "files": 260,
+      "functions": 5720,
+      "classes": 716,
+      "import_edges": 864,
+      "inherit_edges": 97,
+      "unresolved_calls": 14119,
+      "invoke_edges": 7701,
+      "heuristic_invoke_edges": 4212
+    },
+    "heuristic_invoke_share": 0.547
+  }
+}

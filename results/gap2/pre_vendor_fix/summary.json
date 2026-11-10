@@ -1,0 +1,323 @@
+{
+  "loc": {
+    "label": "B-LOC (baseline)",
+    "per_repo": {
+      "requests": {
+        "p@10": 0.2,
+        "ndcg@10": 0.18263233636524942,
+        "p@10_boot_std": 0.07640837650415037,
+        "n_files": 93,
+        "n_fix_files": 9
+      },
+      "flask": {
+        "p@10": 0.8,
+        "ndcg@10": 0.8410151264494313,
+        "p@10_boot_std": 0.09709124574337277,
+        "n_files": 20,
+        "n_fix_files": 12
+      },
+      "xarray": {
+        "p@10": 1.0,
+        "ndcg@10": 0.7732218788437696,
+        "p@10_boot_std": 0.033219120999809726,
+        "n_files": 88,
+        "n_fix_files": 55
+      },
+      "pytest": {
+        "p@10": 1.0,
+        "ndcg@10": 0.9450211116534678,
+        "p@10_boot_std": 0.003160696125855821,
+        "n_files": 72,
+        "n_fix_files": 52
+      }
+    },
+    "mean_p@10": 0.75,
+    "mean_ndcg@10": 0.6854726133279796
+  },
+  "cc": {
+    "label": "B-CC (complexity only = hotspot without graph)",
+    "per_repo": {
+      "requests": {
+        "p@10": 0.3,
+        "ndcg@10": 0.5632829461001875,
+        "p@10_boot_std": 0.08899162881979407,
+        "n_files": 93,
+        "n_fix_files": 9
+      },
+      "flask": {
+        "p@10": 0.8,
+        "ndcg@10": 0.8024594092114088,
+        "p@10_boot_std": 0.1010262837087458,
+        "n_files": 20,
+        "n_fix_files": 12
+      },
+      "xarray": {
+        "p@10": 1.0,
+        "ndcg@10": 0.8405103899934726,
+        "p@10_boot_std": 0.0552404742919537,
+        "n_files": 88,
+        "n_fix_files": 55
+      },
+      "pytest": {
+        "p@10": 1.0,
+        "ndcg@10": 0.9390635450219503,
+        "p@10_boot_std": 0.0,
+        "n_files": 72,
+        "n_fix_files": 52
+      }
+    },
+    "mean_p@10": 0.775,
+    "mean_ndcg@10": 0.7863290725817548
+  },
+  "graph_only": {
+    "label": "graph only (fan-in + fan-out)",
+    "per_repo": {
+      "requests": {
+        "p@10": 0.6,
+        "ndcg@10": 0.7628787471561542,
+        "p@10_boot_std": 0.10843892290132727,
+        "n_files": 93,
+        "n_fix_files": 9
+      },
+      "flask": {
+        "p@10": 0.8,
+        "ndcg@10": 0.6564409952706824,
+        "p@10_boot_std": 0.09558028039297647,
+        "n_files": 20,
+        "n_fix_files": 12
+      },
+      "xarray": {
+        "p@10": 1.0,
+        "ndcg@10": 0.8332879598650696,
+        "p@10_boot_std": 0.06839268966782926,
+        "n_files": 88,
+        "n_fix_files": 55
+      },
+      "pytest": {
+        "p@10": 1.0,
+        "ndcg@10": 0.8768644049563018,
+        "p@10_boot_std": 0.0,
+        "n_files": 72,
+        "n_fix_files": 52
+      }
+    },
+    "mean_p@10": 0.85,
+    "mean_ndcg@10": 0.782368026812052
+  },
+  "hotspot": {
+    "label": "P hotspot (complexity + graph)",
+    "per_repo": {
+      "requests": {
+        "p@10": 0.4,
+        "ndcg@10": 0.6768749694835874,
+        "p@10_boot_std": 0.08917617394797783,
+        "n_files": 93,
+        "n_fix_files": 9
+      },
+      "flask": {
+        "p@10": 0.8,
+        "ndcg@10": 0.7980186660956711,
+        "p@10_boot_std": 0.09454940507480733,
+        "n_files": 20,
+        "n_fix_files": 12
+      },
+      "xarray": {
+        "p@10": 1.0,
+        "ndcg@10": 0.8940443407789791,
+        "p@10_boot_std": 0.055819709780685886,
+        "n_files": 88,
+        "n_fix_files": 55
+      },
+      "pytest": {
+        "p@10": 1.0,
+        "ndcg@10": 0.9620348016583605,
+        "p@10_boot_std": 0.0,
+        "n_files": 72,
+        "n_fix_files": 52
+      }
+    },
+    "mean_p@10": 0.8,
+    "mean_ndcg@10": 0.8327431945041496
+  },
+  "churn": {
+    "label": "reference: churn only",
+    "per_repo": {
+      "requests": {
+        "p@10": 0.3,
+        "ndcg@10": 0.5100493989407003,
+        "p@10_boot_std": 0.07916969117029571,
+        "n_files": 93,
+        "n_fix_files": 9
+      },
+      "flask": {
+        "p@10": 0.8,
+        "ndcg@10": 0.8410419133383036,
+        "p@10_boot_std": 0.10074676173455901,
+        "n_files": 20,
+        "n_fix_files": 12
+      },
+      "xarray": {
+        "p@10": 1.0,
+        "ndcg@10": 0.8343191821845183,
+        "p@10_boot_std": 0.04918333050943174,
+        "n_files": 88,
+        "n_fix_files": 55
+      },
+      "pytest": {
+        "p@10": 1.0,
+        "ndcg@10": 0.943235931554321,
+        "p@10_boot_std": 0.0,
+        "n_files": 72,
+        "n_fix_files": 52
+      }
+    },
+    "mean_p@10": 0.775,
+    "mean_ndcg@10": 0.7821616065044608
+  },
+  "churn_x_cc": {
+    "label": "reference: churn x complexity",
+    "per_repo": {
+      "requests": {
+        "p@10": 0.3,
+        "ndcg@10": 0.5981834843259359,
+        "p@10_boot_std": 0.08528487556419367,
+        "n_files": 93,
+        "n_fix_files": 9
+      },
+      "flask": {
+        "p@10": 0.8,
+        "ndcg@10": 0.8241542215554548,
+        "p@10_boot_std": 0.1010262837087458,
+        "n_files": 20,
+        "n_fix_files": 12
+      },
+      "xarray": {
+        "p@10": 1.0,
+        "ndcg@10": 0.878174544960532,
+        "p@10_boot_std": 0.03799671038392665,
+        "n_files": 88,
+        "n_fix_files": 55
+      },
+      "pytest": {
+        "p@10": 1.0,
+        "ndcg@10": 0.9556371030932309,
+        "p@10_boot_std": 0.0,
+        "n_files": 72,
+        "n_fix_files": 52
+      }
+    },
+    "mean_p@10": 0.775,
+    "mean_ndcg@10": 0.8140373384837885
+  },
+  "hypothesis": {
+    "criterion": "mean P@10(hotspot) - mean P@10(LOC) >= 10 percentage points",
+    "delta_pp": 5.000000000000004,
+    "supported": false
+  },
+  "weights": {
+    "w_in": 0.5,
+    "w_out": 0.5
+  },
+  "splits": {
+    "requests": {
+      "n_commits": 4768,
+      "n_bugfix_commits": 542,
+      "train": {
+        "snapshot": "f44bb31bec2d",
+        "snapshot_date": "2012-12-17",
+        "window_end_date": "2015-02-05",
+        "window_commits": 953,
+        "window_fix_commits": 139
+      },
+      "tune": {
+        "snapshot": "80aee7a2252f",
+        "snapshot_date": "2015-02-05",
+        "window_end_date": "2016-09-06",
+        "window_commits": 716,
+        "window_fix_commits": 85
+      },
+      "test": {
+        "snapshot": "85400d8d6751",
+        "snapshot_date": "2016-09-06",
+        "window_end_date": "2025-08-06",
+        "window_commits": 1192,
+        "window_fix_commits": 119
+      }
+    },
+    "flask": {
+      "n_commits": 3753,
+      "n_bugfix_commits": 459,
+      "train": {
+        "snapshot": "7321a480ea60",
+        "snapshot_date": "2014-05-12",
+        "window_end_date": "2017-05-23",
+        "window_commits": 750,
+        "window_fix_commits": 90
+      },
+      "tune": {
+        "snapshot": "5963cb5a5172",
+        "snapshot_date": "2017-05-23",
+        "window_end_date": "2020-02-06",
+        "window_commits": 563,
+        "window_fix_commits": 67
+      },
+      "test": {
+        "snapshot": "b80eaf2c9978",
+        "snapshot_date": "2020-02-06",
+        "window_end_date": "2025-06-12",
+        "window_commits": 939,
+        "window_fix_commits": 63
+      }
+    },
+    "xarray": {
+      "n_commits": 5593,
+      "n_bugfix_commits": 926,
+      "train": {
+        "snapshot": "3b622b0b92df",
+        "snapshot_date": "2019-06-28",
+        "window_end_date": "2021-08-20",
+        "window_commits": 1118,
+        "window_fix_commits": 175
+      },
+      "tune": {
+        "snapshot": "b9b738074795",
+        "snapshot_date": "2021-08-20",
+        "window_end_date": "2023-01-25",
+        "window_commits": 839,
+        "window_fix_commits": 101
+      },
+      "test": {
+        "snapshot": "c3032cdcf732",
+        "snapshot_date": "2023-01-25",
+        "window_end_date": "2025-08-04",
+        "window_commits": 1399,
+        "window_fix_commits": 232
+      }
+    },
+    "pytest": {
+      "n_commits": 12373,
+      "n_bugfix_commits": 2288,
+      "train": {
+        "snapshot": "e21ae3991de0",
+        "snapshot_date": "2016-09-05",
+        "window_end_date": "2019-01-06",
+        "window_commits": 2474,
+        "window_fix_commits": 504
+      },
+      "tune": {
+        "snapshot": "6ee5d431a037",
+        "snapshot_date": "2019-01-06",
+        "window_end_date": "2020-06-02",
+        "window_commits": 1856,
+        "window_fix_commits": 277
+      },
+      "test": {
+        "snapshot": "eaf46f53545f",
+        "snapshot_date": "2020-06-02",
+        "window_end_date": "2025-08-05",
+        "window_commits": 3094,
+        "window_fix_commits": 534
+      }
+    }
+  }
+}
