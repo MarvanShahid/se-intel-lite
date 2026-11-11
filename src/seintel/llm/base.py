@@ -83,6 +83,8 @@ class CachedLLM(LLM):
             except (json.JSONDecodeError, TypeError):
                 pass
         r = self.inner.complete(system, messages, max_tokens)
+        if r.stop_reason == "error":     # never cache failures, or a rerun would replay them
+            return r
         f.parent.mkdir(parents=True, exist_ok=True)
         f.write_text(json.dumps(asdict(r), ensure_ascii=False), encoding="utf-8")
         return r

@@ -37,8 +37,9 @@ def main():
 
 
 if __name__ == "__main__":
+    from seintel.eval.runner import LLMUnavailable
     from seintel.llm.base import MissingCredentials
     try:
         main()
-    except MissingCredentials as e:
+    except (MissingCredentials, LLMUnavailable) as e:
         raise SystemExit(f"error: {e}") from None

@@ -23,7 +23,17 @@ DEFAULT_JUDGE = os.environ.get("SEINTEL_JUDGE", "anthropic:claude-opus-5-5")
 def _done(path: Path) -> set[str]:
     if not path.exists():
         return set()
-    return {json.loads(l)["qid"] for l in path.read_text(encoding="utf-8").splitlines() if l.strip()}
+    rows = [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
+    return {r["qid"] for r in rows if not _llm_failed(r)}     # LLM-failed rows are retried on resume
+
+
+def _llm_failed(row: dict) -> bool:
+    """The model never produced a usable reply (API errors), as opposed to a weak answer."""
+    return (row.get("llm_errors") or 0) >= 3
+
+
+class LLMUnavailable(RuntimeError):
+    """Several questions in a row failed at the API level: stop instead of logging failures for every question."""
 
 
 def evidence_recall(evidence: list[str], ref_entities: set[str], rg) -> float | None:
@@ -53,6 +63,7 @@ def run_system(system: str | SystemConfig, split: str = "test", runs: int = 3, l
         done = _done(out)
         llm = make_llm(llm_spec, ROOT / ".cache" / "llm", run=r)
         model = llm.name
+        consecutive_fail = 0
         for q in questions:
             if q["qid"] in done:
                 continue
@@ -81,6 +92,14 @@ def run_system(system: str | SystemConfig, split: str = "test", runs: int = 3, l
                            invalid_json=sum(1 for t in ans.trace if t.get("error") == "invalid_json"),
                            llm_errors=sum(1 for t in ans.trace if t.get("error") == "llm_error"),
                            evidence_recall=evidence_recall(ans.evidence, ref_ents, rg))
+                if _llm_failed(row):
+                    consecutive_fail += 1
+                    detail = next((t.get("detail") for t in ans.trace if t.get("error") == "llm_error"), "")
+                    print(f"[{cfg.name} run{r}] {q['qid']} LLM failed: {detail[:300]}", flush=True)
+                    if consecutive_fail >= 3:
+                        raise LLMUnavailable(f"3 questions in a row failed at the API level. Last error: {detail}")
+                    continue     # not written: the question is retried on the next run
+                consecutive_fail = 0
                 if judge_llm:
                     row["scores"] = judge_llm.score(q["question"], q["answer"], ans.answer)
                 (logd / f"{q['qid']}.json").write_text(json.dumps(

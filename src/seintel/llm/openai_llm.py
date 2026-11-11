@@ -60,7 +60,11 @@ class OpenAILLM(LLM):
                 time.sleep(delay + random.uniform(0, 1))
                 delay = min(delay * 2, 60.0)
             except oa.BadRequestError as e:
-                return LLMResponse(text=f"LLM_ERROR: bad request: {str(e)[:300]}", stop_reason="error",
+                detail = getattr(e, "body", None) or getattr(getattr(e, "response", None), "text", "") or str(e)
+                detail = str(detail)
+                if "api key" in detail.lower() or "api_key" in detail.lower():   # Gemini reports bad keys as 400
+                    raise MissingCredentials(f"The provider rejected the API key: {detail[:300]}") from None
+                return LLMResponse(text=f"LLM_ERROR: bad request: {detail[:500]}", stop_reason="error",
                                    latency_s=time.time() - t0)
         u = r.usage
         choice = r.choices[0] if r.choices else None
