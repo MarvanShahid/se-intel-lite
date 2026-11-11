@@ -1,0 +1,10 @@
+\begin{tabular}{lcccc}
+\toprule
+Model & requests & flask & xarray & pytest \\
+\midrule
+Static only & 0.63 / 0.252 / 0.25 & 0.72 / 0.231 / 0.24 & 0.84 / 0.176 / 0.12 & 0.90 / 0.125 / 0.14 \\
+Metrics only (static+change) & 0.70 / 0.278 / 0.28 & 0.62 / 0.243 / 0.17 & 0.80 / 0.182 / 0.14 & 0.92 / 0.114 / 0.12 \\
+Full (ours) & 0.69 / 0.267 / 0.29 & 0.61 / 0.242 / 0.24 & 0.80 / 0.193 / 0.15 & 0.87 / 0.127 / 0.18 \\
+Full, no calibration & 0.69 / 0.284 / 0.31 & 0.61 / 0.256 / 0.30 & 0.80 / 0.204 / 0.18 & 0.87 / 0.131 / 0.19 \\
+\bottomrule
+\end{tabular}

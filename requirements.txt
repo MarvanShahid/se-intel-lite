@@ -9,3 +9,4 @@ pytest>=8.0
 anthropic>=0.40      # agent, baselines and judge (Claude)
 pylint>=3.0          # optional: extra RunQuality output (--use-pylint)
 openai>=1.40         # optional: only for --llm openai:<model>
+matplotlib>=3.8        # paper figures (scripts/make_paper_assets.py)
