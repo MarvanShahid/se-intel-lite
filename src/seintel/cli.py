@@ -101,7 +101,11 @@ def main(argv=None):
     p.add_argument("--repo", required=True)
     p.set_defaults(fn=cmd_graph)
     a = ap.parse_args(argv)
-    a.fn(a)
+    from .llm.base import MissingCredentials
+    try:
+        a.fn(a)
+    except MissingCredentials as e:
+        raise SystemExit(f"error: {e}") from None
 
 
 if __name__ == "__main__":

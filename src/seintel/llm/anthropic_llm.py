@@ -13,7 +13,7 @@ import time
 
 import anthropic
 
-from .base import LLM, LLMResponse
+from .base import LLM, LLMResponse, MissingCredentials
 
 
 class AnthropicLLM(LLM):
@@ -34,6 +34,15 @@ class AnthropicLLM(LLM):
                 output_config={"effort": self.effort},
                 cache_control={"type": "ephemeral"},   # automatic prefix caching of the growing agent transcript
             )
+        except TypeError as e:
+            if "authentication" in str(e).lower():
+                raise MissingCredentials(
+                    "No Anthropic API key found. Set it in this terminal first, e.g. PowerShell: "
+                    '$env:ANTHROPIC_API_KEY = "sk-ant-..."  (or run `ant auth login`).') from None
+            raise
+        except anthropic.AuthenticationError:
+            raise MissingCredentials("The Anthropic API key was rejected (invalid or revoked). "
+                                     "Create a new key at https://platform.claude.com.") from None
         except anthropic.BadRequestError as e:
             # surfaced to the agent loop, which records it in the trace instead of crashing the run
             return LLMResponse(text=f"LLM_ERROR: bad request: {e.message}", stop_reason="error",

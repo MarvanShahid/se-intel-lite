@@ -37,4 +37,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    from seintel.llm.base import MissingCredentials
+    try:
+        main()
+    except MissingCredentials as e:
+        raise SystemExit(f"error: {e}") from None

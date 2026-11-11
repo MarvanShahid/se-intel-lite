@@ -28,6 +28,10 @@ def cost_usd(model: str, input_tokens: int, output_tokens: int, cache_read: int 
     return (input_tokens * pin + cache_read * pin * 0.1 + cache_write * pin * 1.25 + output_tokens * pout) / 1e6
 
 
+class MissingCredentials(RuntimeError):
+    """No API credentials: experiments must stop instead of logging the same error for every question."""
+
+
 @dataclass
 class LLMResponse:
     text: str

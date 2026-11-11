@@ -12,7 +12,7 @@ import traceback
 from pathlib import Path
 
 from ..agent.factory import SYSTEMS, SystemConfig, build_system, RepoContext
-from ..llm.base import cost_usd, make_llm
+from ..llm.base import MissingCredentials, cost_usd, make_llm
 from .dataset import ROOT, is_multi_hop, load_questions, reference_entities
 from .judge import Judge
 
@@ -61,6 +61,8 @@ def run_system(system: str | SystemConfig, split: str = "test", runs: int = 3, l
                 ans = sysobj.run(q["question"], q["repo"])
                 ans.qid, ans.run = q["qid"], r
                 err = None
+            except MissingCredentials:
+                raise                # stop at once: every remaining question would fail the same way
             except Exception as e:   # one failing question must not kill the experiment
                 ans, err = None, f"{type(e).__name__}: {e}\n{traceback.format_exc()[-800:]}"
             rg = RepoContext.get(q["repo"]).rg
